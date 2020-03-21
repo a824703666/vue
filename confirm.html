@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>删除</title>
+</head>
+
+<body>
+    <button onclick="cli()">删除</button>
+
+    <script>
+        // function cli() {
+        //     // confirm('qqqq');
+        //     alert(1)
+        // }
+        function cli() {
+            // confirm('确定要删除吗？');
+            let a = confirm('确定要删除吗？');
+            if (a) {
+                document.querySelector('body').innerHTML = '<h1>你删除了按钮！</h1>';
+            } else {
+                document.querySelector('body').innerHTML = '<h1>你保留了按钮！</h1>';
+            }
+        }
+    </script>
+</body>
+
+</html>

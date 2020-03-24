@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    请上传文件:<input type="file" name="file" id="file">
+    <div id="vue">
+        <!-- <div v-for="(value,index) in 5">{{value}},{{index}}</div>
+        <ul>
+            <li v-for="(value,index) in 5">{{value}},{{index}}</li>
+        </ul>
+
+        <div v-for="(value,index) in list">{{value}},{{index}}</div>
+        <ul>
+            <li v-for="(value,index) in list">{{value}},{{index}}</li>
+        </ul> -->
+        <div v-for="(value,index) in lists">{{value}},{{index}}</div>
+        <ul>
+            <li v-for="(value,index) in lists">{{value}},{{index}}</li>
+        </ul>
+        <div v-for="(value,key,index) in obj">{{key}}:{{value}}--{{index}}</div>
+        <ul>
+            <li v-for="(value,key,index) in obj">{{key}}:{{value}}--{{index}}</li>
+        </ul>
+    </div>
+
+
+    <script>
+        let vm = new Vue({
+            el: '#vue',
+            data: {
+                list: 8,
+                lists: ['午夜凶铃', '鬼片', '僵尸', '泰国'],
+                obj:{name:'zhangsan',age:22,sex:'nan'}
+            }
+            // methods: {
+            //     toggle
+            // },
+        });
+    </script>
+</body>
+
+</html>

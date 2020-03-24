@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="vue">
+        {{name,age}}
+        <br>
+        {{111}}
+        {{obj}}
+        {{obj.name}}
+        <br>
+        {{name}}
+        <div v-if='show'>div1</div>
+        <div v-else>div2</div>
+        <br>
+        <div v-if="div3">div3</div>
+        <!-- <button v-on:click="toggle">点击我</button> -->
+        <button @click="toggle(2,$event)" >点击我</button>
+        <button @click="add" >点击我累加</button>
+        <br>
+        <button @click="add1" >点击我控制div3</button>
+    </div>
+<script>
+    let vm = new Vue({
+        el:'#vue',
+        data:{
+            div3:true,
+            name:1111,
+            obj:{
+                a:111,
+                name:'sa',
+                age:33
+            },
+            age:'zsan',
+            show:true
+        },
+        methods: {
+            // toggle:()=>{
+            //     console.log('我被点击了！');
+            // }   
+            toggle(num,e){
+                console.log("我被再次点击了！",num,e);
+            },
+            add(){
+                this.name+=1
+            },
+            add1(){
+                this.div3=!this.div3;
+            }
+        }
+    });
+</script>
+</body>
+</html>

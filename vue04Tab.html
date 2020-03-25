@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #vue {
+            width: 800px;
+            height: 500px;
+            border: 1px solid red;
+        }
+        #vue ul {
+            font-size: 0;
+        }
+        #vue li {
+            width: 200px;
+            height: 100px;
+            display: inline-block;
+            list-style: none;
+            box-sizing: border-box;
+            border: 1px solid green;
+            font-size: 16px;
+        }
+        #vue div {
+            width: 800px;
+            height: 400px;
+            border: 1px solid yellow;
+            box-sizing: border-box;
+        }
+        .mark{
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="vue">
+        <ul>
+            <li v-for="item in lists" @click="change(item)" :class="item===checked?'mark':''">{{item}}</li>
+        </ul>
+        <div class="content" v-for="item in lists" v-if="item===checked?true:false">{{item}}</div>
+    </div>
+    <script>
+        let vm =new Vue({
+            el:'#vue',
+            data:{
+                lists:['爱情','亲情','友情','恐怖片'],
+                checked:'亲情'
+            },
+            methods: {
+                change(item){
+                    this.checked=item;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

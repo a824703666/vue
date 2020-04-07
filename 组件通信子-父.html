@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="vue">
+        这里是vue实例
+        <br>
+        num:{{num}}
+        <hr>
+        <xixi @chang="thing"></xixi>
+    </div>
+    <template id="tp1">
+        <div class="tp1">
+            这里是组件
+            <br>
+            <button @click="hehe">点击触发父组件事件</button>
+        </div>
+    </template>
+    <script>
+        Vue.component('xixi',{
+            template:'#tp1',
+            data(){
+                return {
+                    num:2
+                }
+            },
+            methods: {
+                hehe(){
+                    this.$emit('chang',this.num)
+                }
+            },
+        })
+        let vm =new Vue({
+            el:"#vue",
+            data:{
+                num:30
+            },
+            methods: {
+                thing(num){
+                    this.num=this.num-num;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

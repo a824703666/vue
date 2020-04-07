@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="vue">
+        我是实例
+        {{show}}
+        <hr>
+        <tp1 :xixi="show"></tp1>
+        <button @click="btn">按钮</button>
+    </div>
+    <template id="tp1">
+        <div class="tp1">
+            <div class="show">
+                我是组件
+                {{hehe}}
+                {{xixi}}
+            </div>
+            <div class="show1" v-if="xixi">
+                我是组件2
+            </div>
+        </div>
+    </template>
+    <script>
+        Vue.component('tp1', {
+            template: '#tp1',
+            data() {
+                return { hehe: 111, show: true }
+            },
+            props: ['xixi']
+        });
+        let vm = new Vue({
+            el: '#vue',
+            data: {
+                show: true
+            },
+            methods: {
+                btn() {
+                    this.show = !this.show;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="vue">
+        <xixi>
+            
+        </xixi>
+    </div>
+    <script>
+        //组件的创建
+        let xixi=Vue.extend({
+            template:'<h1>这个是组建1</h1>'
+        });
+        //组件的注册
+        Vue.component('xixi',xixi)
+        //实例化Vue
+        let vm = new Vue({
+            el:'#vue',
+            data:{
+                name:111
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventbus</title>
+    <script src="./vue.js"></script>
+    <style>
+        .show {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            font-size: 80px;
+            color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 实例vue -->
+    <div id="vue">
+        <tp1></tp1>
+        <hr>
+        <tp2></tp2>
+    </div>
+    <!-- 组件模板一 -->
+    <template id="tp1">
+        <div class="tp1">
+            这是组件一
+            <button @click="toggle">toggle</button>
+        </div>
+    </template>
+    <!-- 组件模板二 -->
+    <template id="tp2">
+        <div class="tp2">
+            这是组件二
+            <div class="show" v-if="show">
+                div的显示隐藏
+            </div>
+        </div>
+    </template>
+    <script>
+        // 声明一个空的实例vue
+        let vue = new Vue();
+        // 组件一
+        Vue.component('tp1', {
+            template: '#tp1',
+            methods: {
+                toggle() {
+                    vue.$emit('show');
+                }
+            },
+        })
+        // 组件二
+        Vue.component('tp2', {
+            template: '#tp2',
+            data() {
+                return {
+                    show: true
+                }
+            },
+            methods: {
+                change() {
+                    this.show = !this.show;
+                }
+            },
+            // 在空实例上面注册一个方法
+            mounted() {
+                vue.$on('show', this.change)
+            },
+        })
+        // 实例
+        let vm = new Vue({
+            el: '#vue'
+        })
+    </script>
+</body>
+
+</html>

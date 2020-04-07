@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="vue">
+        {{name}}
+        <hr>
+        <fa></fa>
+        <son></son>
+        <com></com>
+    </div>
+    <!-- 组件模板 -->
+    <template id="fa">
+        <div class="fa">
+            <h1>这是fa组件</h1>
+            {{name}}
+        </div>
+    </template>
+    <template id="son">
+        <div class="son">
+            <h1>这是son组件</h1>
+            {{name}}
+        </div>
+    </template>
+    <template id="com">
+        <div class="com">
+            <h1>这是全局组件com</h1>
+            {{name}}
+        </div>
+    </template>
+    <script>
+        Vue.component('com', {
+            template:'#com',
+          data(){
+              return {name:44444}
+          }
+        })
+        let vue =new Vue({
+            el:'#vue',
+            data:{
+                name:111
+            },
+            components:{
+                fa:{
+                    template:'#fa',
+                    data() {
+                        return {
+                            name:22222
+                        }
+                    },
+                    methods: {
+                        
+                    },
+                },
+                'son':{
+                    template:'#son',
+                    data() {
+                        return {
+                            name:333
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+</html>

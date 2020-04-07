@@ -7,7 +7,18 @@
     <script src="./vue.js"></script>
 </head>
 <body>
+    <!-- <form action="">
+        <select name="as" id="sd" value="2">
+            <option value="1">苹果</option>
+            <option value="2">问问</option>
+            <option value="3">试试</option>
+        </select>
+    </form> -->
+    <br>
+    {{string}}
     <div id="vue">
+        {{string}}
+        <br>
         {{name,age}}
         <br>
         {{111}}
@@ -20,15 +31,25 @@
         <br>
         <div v-if="div3">div3</div>
         <!-- <button v-on:click="toggle">点击我</button> -->
-        <button @click="toggle(2,$event)" >点击我</button>
+    <button @click="toggle(2,$event)" >点击我</button>
         <button @click="add" >点击我累加</button>
         <br>
         <button @click="add1" >点击我控制div3</button>
+        <br>
+        <input type="text" v-model="inputValue">
+        <br>
+        {{inputValue}}
+        <br>
+        <input type="text" @input="input" :value="target">
+        <br>
+        {{target}}
     </div>
 <script>
     let vm = new Vue({
         el:'#vue',
         data:{
+            target:'zzzzzz',
+            inputValue:'inputValue',
             div3:true,
             name:1111,
             obj:{
@@ -37,9 +58,13 @@
                 age:33
             },
             age:'zsan',
-            show:true
+            show:true,
+            string:'<h1>你好</h1>'
         },
         methods: {
+            input(e){
+                this.target=e.target.value;
+            },
             // toggle:()=>{
             //     console.log('我被点击了！');
             // }   

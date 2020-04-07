@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="vue">
+        {{time}}:
+        <br>
+        {{time|filter}}
+        <br>
+        {{time|filter()}}
+        <br>
+        {{time|filter('.')}}
+        <br>
+        {{time|filter('-')}}
+        <br>
+        {{time|filter('_')}}
+        <br>
+        {{age|xixi}}
+        <hr>
+        <p id="p">{{num}}</p>
+        <button @click="add">num</button>
+        <hr>
+        aaa:{{aaa}}
+        <button @click="aaa1">aaa</button>
+        <br>
+        computed:{{hehe}}
+    </div>
+    <script>
+        // 全局过滤器
+        Vue.filter('filter', (data, params = '/') => {
+            let y = (new Date(data)).getFullYear();
+            let m = (new Date(data)).getMonth() + 1;
+            let d = (new Date(data)).getDate();
+            return `${y}${params}${m}${params}${d}`;
+        })
+        let vm = new Vue({
+            el: '#vue',
+            data: {
+                time: (new Date()).getTime(),
+                age: '你好vue！',
+                num:1,
+                name:'呵呵哒！',
+                aaa:3
+            },
+            methods: {
+                add(){
+                    this.num++;
+                },
+                aaa1(){
+                    this.aaa++
+                }
+            },
+            computed: {
+                hehe(){
+                    return this.aaa+1;
+                }
+            },
+            // 局部过滤器
+            filters: {
+                xixi(data) {
+                    return data + 1;
+                }
+            },
+            watch: {
+                num(newValue,oldValue){
+                    console.log('num你变了');
+                    console.log('new',newValue);
+                    console.log('old',oldValue);
+                    console.log(this.num);
+                    console.log('p',document.getElementById('p'));
+                    console.log('innerHTML',document.getElementById('p').innerHTML);
+                },      
+                name(){
+                    alert('name变了')
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
